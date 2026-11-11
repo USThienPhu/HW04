@@ -15,6 +15,8 @@ Tài liệu này quy định các nguyên tắc và bước kiểm tra **bắt b
 3. **Bảo toàn dữ liệu sẵn có**:
    - Không xóa hoặc ghi đè các artifact đã được ghi nhận trước đó trong `AI-AUDIT/AI-Audit-Report.md`.
    - Giữ nguyên cấu trúc biểu mẫu gốc từ `Template/[AI-02] - FIT@HCMUS - AI Audit Report_Vn.md`.
+4. **Đọc bộ Skill bắt buộc trước khi thực hiện Automation Testing**:
+   - Bất cứ khi nào thực hiện các nhiệm vụ liên quan đến **Automation Testing** (thiết kế/sinh test script, tạo dữ liệu test `.csv`/`.json`, cấu hình Playwright/Allure/HTML reporter, kiểm tra, debug hoặc cập nhật test...), AI Agent **PHẢI đọc trước** tệp `skills/automation-test/SKILL.md`, tài liệu miền tại `skills/automation-test/domain/` (`eshop-srs.md`, `eshop-api-spec.md`, `eshop-setup-guide.md`) và các tệp hướng dẫn tương ứng trong `skills/automation-test/references/` trước khi viết hoặc chỉnh sửa bất kỳ mã kiểm thử nào.
 
 ---
 
