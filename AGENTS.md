@@ -34,14 +34,15 @@ Tài liệu này quy định các nguyên tắc và bước kiểm tra **bắt b
    - **Cột `(2) Output AI`**:
      - Dán nguyên văn output chính do AI tạo ra hoặc nội dung đầy đủ của artifact được sinh (nếu output quá dài hoặc nằm ở file riêng, ghi rõ nội dung cốt lõi/nguyên văn phần chính kèm đường dẫn tới file artifact tương ứng).
    - **Cột `(3) Verdict`**:
-     - Để `[Chờ SV đánh giá: VALID / INVALID / INCOMPLETE]` (AI không tự ý chốt `VALID` thay sinh viên).
+     - Mặc định điền `VALID` khi ghi nhận artifact mới (sinh viên sẽ tự kiểm tra lại và chủ động chỉnh sửa thành `INVALID` hoặc `INCOMPLETE` nếu phát hiện sai sót hoặc thiếu sót).
    - **Cột `(4) Lý do (ISTQB)`**:
-     - Để `[Chờ SV bổ sung dẫn chiếu slide / mục ISTQB / RFC kỹ thuật]` (có thể kèm ghi chú gợi ý ngắn nếu cần, nhưng đánh dấu rõ để sinh viên tự hoàn thiện).
+     - Đọc và tra cứu trực tiếp bộ tài liệu cục bộ tại `skills/verdict/SKILL.md` và `skills/verdict/references/` (`istqb-ctfl-v4.0.md`, `istqb-ct-ai-genai.md`, `rfc-and-standards.md`) trước khi tìm kiếm trực tuyến.
+     - Tự động bổ sung dẫn chiếu cụ thể mục **ISTQB** (ví dụ: `ISTQB CTFL v4.0 §1.4`, `§3.2`, `§4.x`, `§5.4`, `§6.1–6.2`, `CT-AI / CT-GenAI`), slide môn học, hoặc **RFC / chuẩn kỹ thuật** liên quan trực tiếp đến artifact để giải thích cơ sở kiểm thử/kỹ thuật.
    - **Cột `(5) Bản SV sửa`**:
      - Để trống hoặc ghi `[Chờ SV rà soát & chỉnh sửa nếu cần]`.
 3. **Cập nhật Mục 1 và Mục 4**:
    - Đảm bảo trường **Công cụ AI đã dùng** và **Ngày làm bài** ở **Mục 1** phản ánh đúng thực tế phiên làm việc; giữ nguyên các thông tin cá nhân của sinh viên (Họ tên, MSSV, Lớp/Khoá, Giảng viên...) đã được cung cấp.
-   - Sau mỗi lượt hội thoại, cập nhật **Mục 4. Tổng kết Độ chính xác AI** với chỉ số **Tổng artifact AI sinh đã audit** bằng tổng số artifact đã được ghi nhận trong **Mục 3. Bảng Audit** (nếu sinh viên đã điền `Verdict`, đồng thời cập nhật số lượng và tỉ lệ `%` tương ứng cho `VALID`, `INVALID`, `INCOMPLETE`).
+   - Sau mỗi lượt hội thoại, cập nhật **Mục 4. Tổng kết Độ chính xác AI** gồm chỉ số **Tổng artifact AI sinh đã audit** cùng số lượng và tỉ lệ `%` tương ứng cho `VALID`, `INVALID`, `INCOMPLETE` theo trạng thái hiện tại ở **Mục 3. Bảng Audit**.
 
 ---
 
