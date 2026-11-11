@@ -26,7 +26,7 @@ Tài liệu này quy định các nguyên tắc và bước kiểm tra **bắt b
 
 1. **Vị trí ghi**:
    - Điền tuần tự vào các hàng `Artifact #1`, `Artifact #2`, ... còn trống trong **Mục 3. Bảng Audit**.
-   - Nếu đã dùng hết đến `Artifact #10`, tự động thêm hàng mới (`Artifact #11`, `Artifact #12`, ...) ở cuối bảng; **không** xóa hàng mẫu in nghiêng (chỉ nhắc sinh viên thay/xóa trước khi nộp).
+   - Nếu đã dùng hết đến `Artifact #10`, tự động thêm hàng mới (`Artifact #11`, `Artifact #12`, ...) ở cuối bảng. (Hàng mẫu in nghiêng đã được bỏ theo yêu cầu của sinh viên, không tự ý thêm lại).
 2. **Quy tắc từng cột**:
    - **Cột `(1) Prompt + Công cụ`**:
      - Ghi rõ: `Tool: <Tên công cụ AI / Model>`, `Thời gian: <HH:mm DD/MM/YYYY>`, và `Prompt: "<Nguyên văn prompt của người dùng>"`.
@@ -39,8 +39,9 @@ Tài liệu này quy định các nguyên tắc và bước kiểm tra **bắt b
      - Để `[Chờ SV bổ sung dẫn chiếu slide / mục ISTQB / RFC kỹ thuật]` (có thể kèm ghi chú gợi ý ngắn nếu cần, nhưng đánh dấu rõ để sinh viên tự hoàn thiện).
    - **Cột `(5) Bản SV sửa`**:
      - Để trống hoặc ghi `[Chờ SV rà soát & chỉnh sửa nếu cần]`.
-3. **Cập nhật Mục 1 (nếu cần)**:
-   - Đảm bảo trường **Công cụ AI đã dùng** và **Ngày làm bài** phản ánh đúng thực tế phiên làm việc; giữ nguyên các thông tin cá nhân của sinh viên (Họ tên, MSSV, Lớp/Khoá...) nếu chưa được cung cấp.
+3. **Cập nhật Mục 1 và Mục 4**:
+   - Đảm bảo trường **Công cụ AI đã dùng** và **Ngày làm bài** ở **Mục 1** phản ánh đúng thực tế phiên làm việc; giữ nguyên các thông tin cá nhân của sinh viên (Họ tên, MSSV, Lớp/Khoá, Giảng viên...) đã được cung cấp.
+   - Sau mỗi lượt hội thoại, cập nhật **Mục 4. Tổng kết Độ chính xác AI** với chỉ số **Tổng artifact AI sinh đã audit** bằng tổng số artifact đã được ghi nhận trong **Mục 3. Bảng Audit** (nếu sinh viên đã điền `Verdict`, đồng thời cập nhật số lượng và tỉ lệ `%` tương ứng cho `VALID`, `INVALID`, `INCOMPLETE`).
 
 ---
 
@@ -49,9 +50,11 @@ Tài liệu này quy định các nguyên tắc và bước kiểm tra **bắt b
 Trước khi gửi câu trả lời cuối cùng tới người dùng, AI Agent phải tự kiểm tra các điều kiện sau:
 
 1. **Đã cập nhật `AI-AUDIT/AI-Audit-Report.md` chưa?**
-   - Xác nhận lượt trao đổi hiện tại đã được ghi thành một hàng mới (hoặc artifact tương ứng) trong **Mục 3. Bảng Audit** của `AI-AUDIT/AI-Audit-Report.md`.
+   - Xác nhận lượt trao đổi hiện tại đã được ghi thành một hàng mới (hoặc artifact tương ứng) trong **Mục 3. Bảng Audit** và chỉ số **Tổng artifact AI sinh đã audit** trong **Mục 4** của `AI-AUDIT/AI-Audit-Report.md` đã được cập nhật đúng tổng số hiện tại.
 2. **Tính chính xác & minh bạch**:
    - Mọi đường dẫn file, tên hàm/biến, nội dung tài liệu và kết quả chạy lệnh nêu trong câu trả lời phải khớp 100% với những gì đã quan sát trực tiếp từ file hoặc terminal.
    - Nếu có phần việc chưa thực hiện hoặc cần người dùng kiểm tra lại (như đánh giá `Verdict`, điền thông tin cá nhân, kiểm chứng test case), phải nêu rõ ràng.
 3. **Nhắc kiểm tra & xác nhận nhật ký**:
-   - Cuối câu trả lời, thông báo ngắn gọn mã `Artifact #<N>` vừa được cập nhật vào `AI-AUDIT/AI-Audit-Report.md` để người dùng tiện theo dõi và rà soát.
+   - Thông báo ngắn gọn mã `Artifact #<N>` vừa được cập nhật vào `AI-AUDIT/AI-Audit-Report.md` để người dùng tiện theo dõi và rà soát.
+4. **Gợi ý Git Commit ở cuối mỗi output**:
+   - Phần cuối cùng trong mọi câu trả lời của AI Agent **PHẢI** là một dòng gợi ý `git commit` (ví dụ theo chuẩn Conventional Commits như `feat: ...`, `docs: ...`, `fix: ...`, `chore: ...`) phản ánh đúng nội dung thay đổi của lượt trao đổi để người dùng dễ dàng commit.
