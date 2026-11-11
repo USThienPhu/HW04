@@ -58,4 +58,12 @@ Trước khi gửi câu trả lời cuối cùng tới người dùng, AI Agent 
 3. **Nhắc kiểm tra & xác nhận nhật ký**:
    - Thông báo ngắn gọn mã `Artifact #<N>` vừa được cập nhật vào `AI-AUDIT/AI-Audit-Report.md` để người dùng tiện theo dõi và rà soát.
 4. **Gợi ý Git Commit ở cuối mỗi output**:
-   - Phần cuối cùng trong mọi câu trả lời của AI Agent **PHẢI** là một dòng gợi ý `git commit` (ví dụ theo chuẩn Conventional Commits như `feat: ...`, `docs: ...`, `fix: ...`, `chore: ...`) phản ánh đúng nội dung thay đổi của lượt trao đổi để người dùng dễ dàng commit.
+   - Phần cuối cùng trong mọi câu trả lời của AI Agent **PHẢI** là mục `**Gợi ý Git Commit (Theo quy tắc tại AGENTS.md)**` kèm một khối mã `bash` gồm `git add .` và `git commit -m "..."` (theo chuẩn Conventional Commits như `feat: ...`, `docs(...) : ...`, `fix: ...`, `chore: ...`) phản ánh đúng nội dung thay đổi của lượt trao đổi để người dùng dễ dàng sao chép và thực thi.
+   - Mẫu định dạng:
+     ````markdown
+     **Gợi ý Git Commit (Theo quy tắc tại AGENTS.md)**
+     ```bash
+     git add .
+     git commit -m "<type>(<scope>): <description>"
+     ```
+     ````
