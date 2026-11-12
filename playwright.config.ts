@@ -3,9 +3,17 @@ import { defineConfig, devices } from '@playwright/test';
 const RUN_TIMESTAMP = new Date().toISOString();
 const STUDENT_ID = '23120327';
 
+// Detect --project=<name> from CLI args so each browser run keeps its own HTML report & screenshots
+const projectArg = process.argv.find((arg) => arg.startsWith('--project='));
+const runScope = projectArg ? projectArg.split('=')[1] : 'all';
+const htmlOutputFolder =
+  process.env.PLAYWRIGHT_HTML_OUTPUT_DIR || `playwright-report/${runScope}`;
+const testOutputDir = `test-results/${runScope}`;
+
 export default defineConfig({
   testDir: './tests',
   testMatch: '**/*.spec.ts',
+  outputDir: testOutputDir,
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
@@ -18,10 +26,12 @@ export default defineConfig({
     runBy: `Run by: ${STUDENT_ID}`,
     studentId: STUDENT_ID,
     timestamp: RUN_TIMESTAMP,
+    htmlOutputFolder,
+    runScope,
   },
   reporter: [
     ['list'],
-    ['html', { open: 'never', outputFolder: 'playwright-report' }],
+    ['html', { open: 'never', outputFolder: htmlOutputFolder }],
     ['./reporters/student-audit.reporter.ts'],
   ],
   use: {
@@ -30,7 +40,7 @@ export default defineConfig({
     navigationTimeout: 15_000,
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
-    video: 'off',
+    video: 'retain-on-failure',
   },
   projects: [
     {

@@ -7,7 +7,10 @@
     "test:fr06:firefox": "npx playwright test tests/fr06-product-detail.spec.ts --project=firefox",
     "test:fr06:webkit": "npx playwright test tests/fr06-product-detail.spec.ts --project=webkit",
     "test:fr06:all": "npx playwright test tests/fr06-product-detail.spec.ts",
-    "report": "npx playwright show-report"
+    "report:chromium": "npx playwright show-report playwright-report/chromium",
+    "report:firefox": "npx playwright show-report playwright-report/firefox",
+    "report:webkit": "npx playwright show-report playwright-report/webkit",
+    "report:all": "npx playwright show-report playwright-report/all"
   },
   "devDependencies": {
     "@playwright/test": "^1.52.0",
