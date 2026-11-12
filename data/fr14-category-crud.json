@@ -1,0 +1,69 @@
+{
+  "feature": "FR-14: Quản lý Danh mục CRUD (Admin) (Domain + Boundary)",
+  "adminBaseUrl": "http://localhost:5174",
+  "apiBaseUrl": "http://localhost:3000",
+  "adminUser": {
+    "email": "admin@eshop.com",
+    "password": "Admin123!"
+  },
+  "regularUser": {
+    "email": "test@eshop.com",
+    "password": "Test1234!"
+  },
+  "seededCategories": ["Điện thoại", "Laptop", "Phụ kiện"],
+  "requiredHeaders": ["ID", "Tên Danh Mục", "Hành động"],
+  "authCases": {
+    "unauthUiTestId": "TC-FR14-01",
+    "regularUserUiTestId": "TC-FR14-02",
+    "unauthApiTestId": "TC-FR14-03",
+    "regularUserApiTestId": "TC-FR14-04",
+    "expectedNonAdminAlert": "Bạn không phải là admin!"
+  },
+  "readCases": {
+    "seededTestId": "TC-FR14-05",
+    "emptyTestId": "TC-FR14-06"
+  },
+  "validCreateCases": [
+    {
+      "testId": "TC-FR14-07",
+      "title": "BVA Min Valid Length (1 char): creates category 'A' and displays in table",
+      "namePrefix": "A"
+    },
+    {
+      "testId": "TC-FR14-08",
+      "title": "Domain Valid Vietnamese & Symbols: creates category with Unicode and '&'",
+      "namePrefix": "Thiết bị & Phụ kiện 2026"
+    },
+    {
+      "testId": "TC-FR14-09",
+      "title": "BVA Max Boundary (255 chars): creates 255-character category name",
+      "length": 255
+    }
+  ],
+  "invalidCreateCases": {
+    "emptyUiTestId": "TC-FR14-10",
+    "whitespaceApiTestId": "TC-FR14-11",
+    "whitespaceValue": "   "
+  },
+  "xssCase": {
+    "testId": "TC-FR14-12",
+    "payload": "<script>window.__xssTriggered=true</script>Laptop Gaming"
+  },
+  "updateCase": {
+    "testId": "TC-FR14-13",
+    "initialName": "Temp Cat Initial",
+    "updatedName": "Temp Cat Updated"
+  },
+  "deleteCase": {
+    "testId": "TC-FR14-14",
+    "tempName": "Temp Cat To Delete"
+  },
+  "boundaryAndResponsiveCase": {
+    "testId": "TC-FR14-15",
+    "nonExistentId": 99999,
+    "viewport": {
+      "width": 375,
+      "height": 667
+    }
+  }
+}
