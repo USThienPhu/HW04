@@ -1,0 +1,16 @@
+{
+  "name": "eshop-hw04-automation",
+  "version": "1.0.0",
+  "description": "HW04 Automation Testing for EShop SUT (CS423 / CSC13003) - Student 23120327",
+  "scripts": {
+    "test:fr06:chromium": "npx playwright test tests/fr06-product-detail.spec.ts --project=chromium",
+    "test:fr06:firefox": "npx playwright test tests/fr06-product-detail.spec.ts --project=firefox",
+    "test:fr06:webkit": "npx playwright test tests/fr06-product-detail.spec.ts --project=webkit",
+    "test:fr06:all": "npx playwright test tests/fr06-product-detail.spec.ts",
+    "report": "npx playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.10.0"
+  }
+}

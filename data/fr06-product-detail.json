@@ -1,0 +1,134 @@
+{
+  "feature": "FR-06: Xem chi tiết sản phẩm (Domain + Boundary)",
+  "apiBaseUrl": "http://localhost:3000",
+  "displayCases": [
+    {
+      "testId": "TC-FR06-01",
+      "title": "Navigate from Home and verify full product detail fields for iPhone 15 Pro Max",
+      "productId": 1,
+      "expectedName": "iPhone 15 Pro Max",
+      "expectedPriceRegex": "30[.,]000[.,]000\\s*₫",
+      "expectedDescription": "Điện thoại cao cấp của Apple",
+      "expectedImageAlt": "iPhone 15 Pro Max",
+      "expectedCategory": "Điện thoại",
+      "navigateFromHome": true
+    },
+    {
+      "testId": "TC-FR06-02",
+      "title": "Direct navigation to /product/3 displays MacBook Pro M3 details",
+      "productId": 3,
+      "expectedName": "MacBook Pro M3",
+      "expectedPriceRegex": "45[.,]000[.,]000\\s*₫",
+      "expectedDescription": "Laptop chuyên nghiệp mạnh mẽ",
+      "expectedImageAlt": "MacBook Pro M3",
+      "expectedCategory": "Laptop",
+      "navigateFromHome": false
+    }
+  ],
+  "categoryComplianceCase": {
+    "testId": "TC-FR06-03",
+    "title": "Product detail page must display product category per SRS FR-06",
+    "productId": 1,
+    "expectedCategory": "Điện thoại"
+  },
+  "defaultStateCase": {
+    "testId": "TC-FR06-04",
+    "title": "Default quantity is 1 and Add to Cart button is visible and enabled",
+    "productId": 1,
+    "expectedDefaultQuantity": "1",
+    "addButtonLabel": "Thêm vào giỏ hàng"
+  },
+  "quantityBoundaryCases": [
+    {
+      "testId": "TC-FR06-05",
+      "title": "BVA Min Valid (quantity = 1): single click adds item and shows feedback",
+      "productId": 1,
+      "quantityInput": "1",
+      "isValid": true,
+      "expectedFeedback": "Đã thêm",
+      "expectedCartItemCount": 1
+    },
+    {
+      "testId": "TC-FR06-06",
+      "title": "BVA Just Above Min (quantity = 2): single click adds 2 items to cart",
+      "productId": 2,
+      "quantityInput": "2",
+      "isValid": true,
+      "expectedFeedback": "Đã thêm",
+      "expectedCartItemCount": 1
+    },
+    {
+      "testId": "TC-FR06-07",
+      "title": "BVA Large Valid Integer (quantity = 99): accepts positive integer 99",
+      "productId": 4,
+      "quantityInput": "99",
+      "isValid": true,
+      "expectedFeedback": "Đã thêm",
+      "expectedCartItemCount": 1
+    },
+    {
+      "testId": "TC-FR06-08",
+      "title": "BVA Below Min (quantity = 0): rejects zero quantity per SRS FR-06",
+      "productId": 1,
+      "quantityInput": "0",
+      "isValid": false,
+      "expectedFeedback": "Đã thêm"
+    },
+    {
+      "testId": "TC-FR06-09",
+      "title": "BVA Negative (quantity = -1): rejects negative quantity per SRS FR-06",
+      "productId": 1,
+      "quantityInput": "-1",
+      "isValid": false,
+      "expectedFeedback": "Đã thêm"
+    },
+    {
+      "testId": "TC-FR06-10",
+      "title": "Domain Invalid Decimal (quantity = 1.5): rejects non-integer quantity",
+      "productId": 1,
+      "quantityInput": "1.5",
+      "isValid": false,
+      "expectedFeedback": "Đã thêm"
+    },
+    {
+      "testId": "TC-FR06-11",
+      "title": "Domain Invalid Empty (quantity = ''): prevents adding NaN quantity to cart",
+      "productId": 1,
+      "quantityInput": "",
+      "isValid": false,
+      "expectedFeedback": "Đã thêm"
+    },
+    {
+      "testId": "TC-FR06-12",
+      "title": "Domain Invalid Non-Numeric (quantity = 'abc'): input rejects alphabetic characters",
+      "productId": 1,
+      "quantityInput": "abc",
+      "isValid": false
+    }
+  ],
+  "routeBoundaryCases": [
+    {
+      "testId": "TC-FR06-13",
+      "title": "BVA Non-existent Product ID (99999): shows not-found message instead of infinite loading",
+      "productId": "99999",
+      "expectedNotFoundPattern": "không tồn tại|not found|404",
+      "loadingText": "Đang tải..."
+    },
+    {
+      "testId": "TC-FR06-14",
+      "title": "BVA Invalid Product ID (0): handles boundary ID 0 gracefully without infinite loading",
+      "productId": "0",
+      "expectedNotFoundPattern": "không tồn tại|not found|404|không hợp lệ",
+      "loadingText": "Đang tải..."
+    }
+  ],
+  "responsiveCase": {
+    "testId": "TC-FR06-15",
+    "title": "Responsive Mobile Viewport (375x667): Add to Cart button remains visible and clickable",
+    "productId": 1,
+    "viewport": {
+      "width": 375,
+      "height": 667
+    }
+  }
+}
