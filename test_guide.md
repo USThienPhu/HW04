@@ -19,13 +19,22 @@ npm run dev
 ```bash
 npm run test:fr06:chromium
 ```
+```bash
+npm run test:fr11:chromium
+```
 
 ```bash
 npm run test:fr06:firefox
 ```
+```bash
+npm run test:fr11:firefox
+```
 
 ```bash
 npm run test:fr06:webkit
+```
+```bash
+npm run test:fr11:webkit
 ```
 
 ---
@@ -34,6 +43,9 @@ npm run test:fr06:webkit
 
 ```bash
 npm run test:fr06:all
+```
+```bash
+npm run test:fr11:all
 ```
 
 
@@ -54,4 +66,16 @@ npm run report:firefox
 
 ```bash
 npm run report:webkit
+```
+
+```bash
+npm run report:fr11:chromium
+```
+
+```bash
+npm run report:fr11:firefox
+```
+
+```bash
+npm run report:fr11:webkit
 ```

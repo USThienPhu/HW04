@@ -7,10 +7,18 @@
     "test:fr06:firefox": "npx playwright test tests/fr06-product-detail.spec.ts --project=firefox",
     "test:fr06:webkit": "npx playwright test tests/fr06-product-detail.spec.ts --project=webkit",
     "test:fr06:all": "npx playwright test tests/fr06-product-detail.spec.ts",
-    "report:chromium": "npx playwright show-report playwright-report/chromium",
-    "report:firefox": "npx playwright show-report playwright-report/firefox",
-    "report:webkit": "npx playwright show-report playwright-report/webkit",
-    "report:all": "npx playwright show-report playwright-report/all"
+    "test:fr11:chromium": "npx playwright test tests/fr11-order-history.spec.ts --project=chromium",
+    "test:fr11:firefox": "npx playwright test tests/fr11-order-history.spec.ts --project=firefox",
+    "test:fr11:webkit": "npx playwright test tests/fr11-order-history.spec.ts --project=webkit",
+    "test:fr11:all": "npx playwright test tests/fr11-order-history.spec.ts",
+    "report:fr06:chromium": "npx playwright show-report playwright-report/fr06/chromium",
+    "report:fr06:firefox": "npx playwright show-report playwright-report/fr06/firefox",
+    "report:fr06:webkit": "npx playwright show-report playwright-report/fr06/webkit",
+    "report:fr06:all": "npx playwright show-report playwright-report/fr06/all",
+    "report:fr11:chromium": "npx playwright show-report playwright-report/fr11/chromium",
+    "report:fr11:firefox": "npx playwright show-report playwright-report/fr11/firefox",
+    "report:fr11:webkit": "npx playwright show-report playwright-report/fr11/webkit",
+    "report:fr11:all": "npx playwright show-report playwright-report/fr11/all"
   },
   "devDependencies": {
     "@playwright/test": "^1.52.0",

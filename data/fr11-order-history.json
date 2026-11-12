@@ -1,0 +1,147 @@
+{
+  "feature": "FR-11: Xem lịch sử đơn hàng (Domain + Boundary)",
+  "apiBaseUrl": "http://localhost:3000",
+  "testUser": {
+    "email": "test@eshop.com",
+    "password": "Test1234!"
+  },
+  "adminUser": {
+    "email": "admin@eshop.com",
+    "password": "Admin123!"
+  },
+  "unauthenticatedCase": {
+    "testId": "TC-FR11-01",
+    "title": "Unauthenticated user visiting /profile sees login prompt and no order table",
+    "expectedPrompt": "Vui lòng đăng nhập"
+  },
+  "apiAuthCases": [
+    {
+      "testId": "TC-FR11-02",
+      "title": "API Auth Boundary (missing token): GET /api/orders/my-orders returns 401 or 403",
+      "token": "",
+      "expectedMinStatus": 401
+    },
+    {
+      "testId": "TC-FR11-03",
+      "title": "API Auth Boundary (invalid JWT): GET /api/orders/my-orders rejects tampered token",
+      "token": "invalid.jwt.token.23120327",
+      "expectedMinStatus": 401
+    }
+  ],
+  "idorCase": {
+    "testId": "TC-FR11-04",
+    "title": "Security Isolation (IDOR): User cannot fetch another user's order via GET /api/orders/:id",
+    "shippingAddress": "123 Nguyen Hue, Q1, TP.HCM",
+    "expectedMaxAllowedStatus": 200
+  },
+  "emptyOrderCase": {
+    "testId": "TC-FR11-05",
+    "title": "BVA Lower Bound (0 orders): displays empty order history message",
+    "expectedEmptyMessage": "Bạn chưa có đơn hàng nào."
+  },
+  "singleOrderCase": {
+    "testId": "TC-FR11-06",
+    "title": "BVA Min Non-Empty (1 order): displays Mã ĐH, Ngày đặt, Tổng tiền, Trạng thái columns",
+    "order": {
+      "id": 101,
+      "total_amount": 30000000,
+      "status": "pending",
+      "created_at": "2026-11-12T10:00:00.000Z"
+    },
+    "requiredHeaders": ["Mã ĐH", "Ngày đặt", "Tổng tiền", "Trạng thái"],
+    "expectedOrderIdText": "#101",
+    "expectedAmountRegex": "30[.,]000[.,]000\\s*₫",
+    "expectedStatusLabel": "Chờ xác nhận"
+  },
+  "bulkOrdersCase": {
+    "testId": "TC-FR11-07",
+    "title": "BVA Large List (50 orders): renders all 50 order rows accurately",
+    "orderCount": 50
+  },
+  "statusCases": [
+    {
+      "testId": "TC-FR11-08",
+      "title": "Status Domain (pending): displays 'Chờ xác nhận' with yellow badge and cancel button",
+      "orderId": 201,
+      "status": "pending",
+      "expectedLabel": "Chờ xác nhận",
+      "expectedClassRegex": "bg-yellow-100.*text-yellow-800",
+      "expectCancelVisible": true
+    },
+    {
+      "testId": "TC-FR11-09",
+      "title": "Status Domain (confirmed): displays 'Đã xác nhận' with indigo badge and cancel button",
+      "orderId": 202,
+      "status": "confirmed",
+      "expectedLabel": "Đã xác nhận",
+      "expectedClassRegex": "bg-indigo-100.*text-indigo-800",
+      "expectCancelVisible": true
+    },
+    {
+      "testId": "TC-FR11-10",
+      "title": "Status Domain (shipping): displays 'Đang giao' with blue badge and hides user cancel button per SRS",
+      "orderId": 203,
+      "status": "shipping",
+      "expectedLabel": "Đang giao",
+      "expectedClassRegex": "bg-blue-100.*text-blue-800",
+      "expectCancelVisible": false
+    },
+    {
+      "testId": "TC-FR11-11",
+      "title": "Status Domain (delivered): displays 'Đã giao' with green badge and no cancel button",
+      "orderId": 204,
+      "status": "delivered",
+      "expectedLabel": "Đã giao",
+      "expectedClassRegex": "bg-green-100.*text-green-800",
+      "expectCancelVisible": false
+    },
+    {
+      "testId": "TC-FR11-12",
+      "title": "Status Domain (canceled): displays 'Đã hủy' with red badge and no cancel button",
+      "orderId": 205,
+      "status": "canceled",
+      "expectedLabel": "Đã hủy",
+      "expectedClassRegex": "bg-red-100.*text-red-800",
+      "expectCancelVisible": false
+    }
+  ],
+  "amountBoundaryCase": {
+    "testId": "TC-FR11-13",
+    "title": "BVA Order Amount (0 and 999,999,999): formats boundary totals without NaN",
+    "orders": [
+      {
+        "id": 301,
+        "total_amount": 0,
+        "status": "pending",
+        "created_at": "2026-11-12T10:00:00.000Z"
+      },
+      {
+        "id": 302,
+        "total_amount": 999999999,
+        "status": "delivered",
+        "created_at": "2026-11-12T11:00:00.000Z"
+      }
+    ],
+    "expectedZeroRegex": "0\\s*₫",
+    "expectedMaxRegex": "999[.,]999[.,]999\\s*₫"
+  },
+  "apiErrorFallbackCase": {
+    "testId": "TC-FR11-14",
+    "title": "Negative API 500 Error: handles /api/orders/my-orders failure gracefully",
+    "expectedFallbackText": "Bạn chưa có đơn hàng nào."
+  },
+  "responsiveCase": {
+    "testId": "TC-FR11-15",
+    "title": "Responsive Mobile Viewport (375x667): order history heading and table remain visible",
+    "viewport": {
+      "width": 375,
+      "height": 667
+    },
+    "sampleOrder": {
+      "id": 401,
+      "total_amount": 4000000,
+      "status": "delivered",
+      "created_at": "2026-11-12T12:00:00.000Z"
+    }
+  }
+}

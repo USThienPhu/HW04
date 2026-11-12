@@ -1,14 +1,22 @@
+import path from 'path';
 import { defineConfig, devices } from '@playwright/test';
 
 const RUN_TIMESTAMP = new Date().toISOString();
 const STUDENT_ID = '23120327';
 
-// Detect --project=<name> from CLI args so each browser run keeps its own HTML report & screenshots
+// Detect --project=<name> and spec file from CLI args so each feature × browser keeps its own report
 const projectArg = process.argv.find((arg) => arg.startsWith('--project='));
 const runScope = projectArg ? projectArg.split('=')[1] : 'all';
+
+const specArg = process.argv.find((arg) => arg.endsWith('.spec.ts'));
+const featureScope = specArg
+  ? path.basename(specArg, '.spec.ts').split('-')[0]
+  : 'suite';
+
 const htmlOutputFolder =
-  process.env.PLAYWRIGHT_HTML_OUTPUT_DIR || `playwright-report/${runScope}`;
-const testOutputDir = `test-results/${runScope}`;
+  process.env.PLAYWRIGHT_HTML_OUTPUT_DIR ||
+  `playwright-report/${featureScope}/${runScope}`;
+const testOutputDir = `test-results/${featureScope}/${runScope}`;
 
 export default defineConfig({
   testDir: './tests',
@@ -27,7 +35,7 @@ export default defineConfig({
     studentId: STUDENT_ID,
     timestamp: RUN_TIMESTAMP,
     htmlOutputFolder,
-    runScope,
+    runScope: `${featureScope}/${runScope}`,
   },
   reporter: process.argv.includes('--list')
     ? [['list']]
