@@ -43,6 +43,15 @@ npm run test:fr06:all
 
 *(Đã tích hợp sẵn thông tin `Run by: 23120327` và ISO timestamp)*
 
+
 ```bash
-npm run report
+npm run report:chromium
+```
+
+```bash
+npm run report:firefox
+```
+
+```bash
+npm run report:webkit
 ```

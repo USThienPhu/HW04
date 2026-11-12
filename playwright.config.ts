@@ -29,11 +29,13 @@ export default defineConfig({
     htmlOutputFolder,
     runScope,
   },
-  reporter: [
-    ['list'],
-    ['html', { open: 'never', outputFolder: htmlOutputFolder }],
-    ['./reporters/student-audit.reporter.ts'],
-  ],
+  reporter: process.argv.includes('--list')
+    ? [['list']]
+    : [
+        ['list'],
+        ['html', { open: 'never', outputFolder: htmlOutputFolder }],
+        ['./reporters/student-audit.reporter.ts'],
+      ],
   use: {
     baseURL: process.env.BASE_URL || 'http://localhost:5173',
     actionTimeout: 10_000,
