@@ -204,10 +204,7 @@ npm run report:fr14:webkit
 
 ## 6. Các Liên kết Quan trọng (Deliverable Links)
 
-- **GitHub Repository công khai:** [https://github.com/phuthai0306/SoftwareTesting_HW04](https://github.com/phuthai0306/SoftwareTesting_HW04) *(Sinh viên cập nhật liên kết repository cá nhân)*
-- **GitHub Issues (Danh sách lỗi phát hiện trên SUT):**
-  - **Issue #1 (Lỗ hổng RBAC):** [https://github.com/phuthai0306/SoftwareTesting_HW04/issues/1](https://github.com/phuthai0306/SoftwareTesting_HW04/issues/1) — `[Bug][RBAC] API POST /api/categories allows non-admin users to create categories`
-  - **Issue #2 (Lỗi Validation):** [https://github.com/phuthai0306/SoftwareTesting_HW04/issues/2](https://github.com/phuthai0306/SoftwareTesting_HW04/issues/2) — `[Bug][Validation] API POST /api/categories accepts whitespace-only names`
+- **GitHub Issues (Danh sách lỗi phát hiện trên SUT):** https://github.com/tthphat/eshop-sut/issues
 - **Video Demo YouTube (Chế độ Không công khai — Unlisted):**
   - **Đường dẫn liên kết:** `https://youtu.be/<YOUR_VIDEO_ID_HERE>` *(Sinh viên chèn đường dẫn sau khi tải video lên YouTube)*
   - **Thời lượng:** ≥ 5 phút
