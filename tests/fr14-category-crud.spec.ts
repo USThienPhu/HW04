@@ -80,8 +80,8 @@ test.describe('FR-14: Quản lý Danh mục CRUD (Admin) (Domain + Boundary)', (
       await dialog.accept();
     });
 
-    await page.locator('input[type="email"]').fill(testData.regularUser.email);
-    await page.locator('input[type="password"]').fill(testData.regularUser.password);
+    await adminPage.emailInput.fill(testData.regularUser.email);
+    await adminPage.passwordInput.fill(testData.regularUser.password);
     await adminPage.loginButton.click();
 
     await expect.poll(() => dialogMessage).toBe(
@@ -123,6 +123,8 @@ test.describe('FR-14: Quản lý Danh mục CRUD (Admin) (Domain + Boundary)', (
       }
     }
 
+    // Theo SRS FR-12: Mọi thao tác CRUD danh mục yêu cầu role = 'admin'.
+    // Test case này kỳ vọng HTTP 403 Forbidden để phát hiện lỗi thực tế (bug RBAC) nếu backend cho phép.
     expect(res.status()).toBe(403);
   });
 
@@ -232,6 +234,8 @@ test.describe('FR-14: Quản lý Danh mục CRUD (Admin) (Domain + Boundary)', (
       }
     }
 
+    // Theo SRS FR-14: Tên danh mục là bắt buộc, không được để trống hoặc chỉ chứa khoảng trắng.
+    // Kỳ vọng HTTP 400 Bad Request (hoặc 4xx) để phát hiện bug backend chấp nhận chuỗi khoảng trắng.
     expect(res.ok()).toBeFalsy();
     expect(res.status()).toBeGreaterThanOrEqual(400);
   });

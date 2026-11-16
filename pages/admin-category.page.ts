@@ -10,17 +10,21 @@ export class AdminCategoryPage {
   readonly tableHeaders: Locator;
   readonly tableRows: Locator;
   readonly loginButton: Locator;
+  readonly emailInput: Locator;
+  readonly passwordInput: Locator;
 
   constructor(page: Page) {
     this.page = page;
-    this.categoryTabItem = page.locator('aside li', { hasText: 'Danh mục' });
+    this.categoryTabItem = page.locator('li', { hasText: 'Danh mục' });
     this.heading = page.getByRole('heading', { name: 'Quản lý Danh mục' });
     this.nameInput = page.getByPlaceholder('Tên danh mục mới');
     this.addButton = page.getByRole('button', { name: 'Thêm mới' });
-    this.table = page.locator('main table');
+    this.table = page.locator('table');
     this.tableHeaders = this.table.locator('thead th');
     this.tableRows = this.table.locator('tbody tr');
-    this.loginButton = page.getByRole('button', { name: /Đăng nhập/i });
+    this.loginButton = page.getByRole('button', { name: /^(Login|Đăng nhập)$/i });
+    this.emailInput = page.getByPlaceholder(/email/i);
+    this.passwordInput = page.getByPlaceholder(/password/i);
   }
 
   async gotoAdmin(adminBaseUrl: string): Promise<void> {

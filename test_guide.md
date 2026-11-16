@@ -3,19 +3,16 @@ Dưới đây là phần cấu trúc lệnh đã được cập nhật đầy đ
 ### 1. Khởi động hệ thống (Mở các terminal riêng biệt)
 
 ```bash
-# Terminal 1 - Backend (localhost:3000)
 cd eshop-sut/backend
 npm start
 ```
 
 ```bash
-# Terminal 2 - Frontend Web (localhost:5173, dùng cho FR-06 & FR-11)
 cd eshop-sut/frontend-web
 npm run dev
 ```
 
 ```bash
-# Terminal 3 - Frontend Admin (localhost:5174, dùng cho FR-14)
 cd eshop-sut/frontend-admin
 npm run dev
 ```
