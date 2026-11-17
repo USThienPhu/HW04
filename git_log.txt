@@ -1,0 +1,197 @@
+commit 0e3d49c5e8babba0c16399daad9dd7549e378e5a
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Tue Nov 17 15:00:57 2026 +0700
+
+    docs: add official project GitHub repository link to README.md and Report.md
+
+commit 26294c7c56f999a55d710a19f0969fe7caa3ee07
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Tue Nov 17 14:58:49 2026 +0700
+
+    chores: clean for remote repo
+
+commit ed8df1db60abbe2211d10d14fe7d8668fbc37b25
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Tue Nov 17 14:56:32 2026 +0700
+
+    docs(report): synchronize YouTube demo and GitHub issues deliverable links in Report.md
+
+commit 479eec7ae02c6d74e8d2e6f645b6b29ffab64f0c
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Tue Nov 17 14:51:28 2026 +0700
+
+    feat: update ai audit
+
+commit dd06386b40b3c949f91f74c99a8daef24bc2fcb3
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Tue Nov 17 14:36:35 2026 +0700
+
+    docs: create AI-Critique.md adhering to FIT-HCMUS AI Disclosure template AI-03
+
+commit ab1555ddd7514eb86f98427be3ae0cb711a4ebe7
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Tue Nov 17 14:33:27 2026 +0700
+
+    docs(report): generate comprehensive academic test report Report.md per HW04 specification
+
+commit 47f27b8fac2de4b091a6e677baf394bdac183be3
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Tue Nov 17 14:27:13 2026 +0700
+
+    refactor(tests): structure all test suites with Arrange-Act-Assert test steps and ISTQB traceability comments
+
+commit 4493abd73179c27c6f89db973885caa754d12ba9
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Tue Nov 17 14:22:57 2026 +0700
+
+    fix(test): harden category CRUD teardown with try-finally and API fallback cleanup
+
+commit d8a399f4082a32df684434563b97f55c1d1ede2b
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Tue Nov 17 14:20:17 2026 +0700
+
+    fix(test): harden order status assertion with 7s retry and response sync on cancellation
+
+commit 2c75c1eec4b12401287f694fdcc14b98f267d766
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Tue Nov 17 14:15:58 2026 +0700
+
+    fix(test): harden navigation wait for FR-06 product detail to eliminate flaky race condition
+
+commit 76544b9939e26146afc6bd8bc7e1fcd5268a0167
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Tue Nov 17 14:03:38 2026 +0700
+
+    docs: finalize README.md and video script with official YouTube demo link
+
+commit 6076c6b4b414dbc772f5b35a65ecae64ba324df7
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Mon Nov 16 21:23:49 2026 +0700
+
+    docs(readme): add comprehensive project delivery README and self-assessment table
+
+commit fd3184f2a0ec0a7adeb9c5458da7157ebe056f1e
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Mon Nov 16 17:09:59 2026 +0700
+
+    docs(readme): add comprehensive project delivery README and self-assessment table
+
+commit dd5a8f28b34084ec81d80e352d32e3131998899d
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Mon Nov 16 16:38:57 2026 +0700
+
+    docs(bug): create comprehensive bug report and organize evidence screenshots
+
+commit 9ce4f725fdd80a8fd4d35a2bff4eb960fa15370d
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Mon Nov 16 16:14:09 2026 +0700
+
+    fix(fr14): refine admin category POM selectors and preserve defect assertions
+
+commit de22d2c268fbe40f7b0376f0e6ead4a33ee0c4d7
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Thu Nov 12 20:38:45 2026 +0700
+
+    docs(guide): update test_guide.md with FR-14 Admin setup and report commands
+
+commit 292685f5e5296306ea46963c9038f9bc8560e4a0
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Thu Nov 12 20:37:43 2026 +0700
+
+    feat(fr14): add 15 data-driven Playwright tests and POM for Admin Category CRUD
+
+commit 457b19247b1bbd3b9c4d37c2c504f67625034969
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Thu Nov 12 20:34:45 2026 +0700
+
+    chore(config): align FR-06 report directories and npm scripts with FR-11
+
+commit b4be6ee5f1c1b71bd96cb7fc6ffd1cd22879246e
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Thu Nov 12 20:16:13 2026 +0700
+
+    docs(audit): log Artifact #15 verifying Task 1 completion status for FR-06
+
+commit c41541b00645b120ad8d30e93369a8c8b6c103ba
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Thu Nov 12 14:23:35 2026 +0700
+
+    fix(config): skip html reporter during --list to prevent overwriting reports
+
+commit c78c3e0dce78b8674965c354963d3e4b95ebb64e
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Thu Nov 12 14:19:23 2026 +0700
+
+    Untrack test-results folder
+
+commit c7a981b34386cfd064124f7448417de4a22a2cc6
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Thu Nov 12 14:18:21 2026 +0700
+
+    chore(config): disable failure video recording and keep screenshots only
+
+commit 447f82ea83956012683b5c074af395568a3cffc4
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Thu Nov 12 14:12:52 2026 +0700
+
+    fix(config): isolate HTML reports and test artifacts per browser project
+
+commit 32d720d9fee38dc4b5399d0de754557112841b0e
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Thu Nov 12 14:09:57 2026 +0700
+
+    docs(audit): log Artifact #11 clarifying Playwright failure videos vs HW04 demo video
+
+commit a93a7d6dec1e5d7ce4568bb0ddd1428830f85d16
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Thu Nov 12 13:55:21 2026 +0700
+
+    feat(fr06): add 15 data-driven Playwright tests, POM and student audit reporter
+
+commit 4e7c63450155280e01b8c2e61b35ae6b0b37d78d
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Thu Nov 12 01:09:52 2026 +0700
+
+    docs(agents): require reading automation-test skills before testing tasks
+
+commit 1f96f0d0cd3b16c4e52e9784daf9629082f5faff
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Thu Nov 12 01:07:58 2026 +0700
+
+    feat(skills): add Playwright and EShop domain automation-test skill
+
+commit 87294b9956fcba27c1a9b959084dc88793b8e4b4
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Thu Nov 12 00:50:14 2026 +0700
+
+    feat: add eshop and update AGENTS.md
+
+commit f72ccea43fa97e64636181d67b7ad3861d07511f
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Thu Nov 12 00:40:53 2026 +0700
+
+    docs: translate HW04 assignment specification to Vietnamese
+
+commit e8a7cb34007e07656b73c2e98dccee831734aab0
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Thu Nov 12 00:38:38 2026 +0700
+
+    feat: add local ISTQB and RFC verdict skill under skills/verdict
+
+commit 1a49b6039bdb5a0d9e6c2f1b9e2e32ae136d7eae
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Thu Nov 12 00:24:28 2026 +0700
+
+    docs: update student info, audit rules, and add git commit suggestion rule
+
+commit cb29efd9d9ed15bee749723209c0de8ae2d7087c
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Thu Nov 12 00:15:54 2026 +0700
+
+    feat: initialie AGENTS.md and AI-AUDIT
+
+commit c22d2b2a94c62be2846d0cb1627a61cee21f075d
+Author: 23120327 <thaithienphu74109630@gmail.com>
+Date:   Thu Nov 12 00:09:10 2026 +0700
+
+    initialize
