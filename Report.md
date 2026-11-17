@@ -48,6 +48,7 @@
 5. [Phần 5: Kết luận & Đánh giá Năng lực Bloom-AI](#phần-5-kết-luận--đánh-giá-năng-lực-bloom-ai)
    - 5.1. [Tổng kết giá trị kỹ thuật của giải pháp kiểm thử](#51-tổng-kết-giá-trị-kỹ-thuật-của-giải-pháp-kiểm-thử)
    - 5.2. [Bảng tự đánh giá mức độ năng lực Bloom-AI](#52-bảng-tự-đánh-giá-mức-độ-năng-lực-bloom-ai)
+6. [Phần 6: Các Liên kết Bàn giao Quan trọng (Deliverable Links)](#phần-6-các-liên-kết-bàn-giao-quan-trọng-deliverable-links)
 
 ---
 
@@ -429,6 +430,28 @@ Qua quá trình thực hiện bài tập HW04-AI, sinh viên đã xây dựng th
 | **G9.2 (Vận dụng - Apply)** | Biết cách ra lệnh cho AI sinh mã nguồn kiểm thử có cấu trúc theo mô hình chuẩn. | Soạn thảo các prompt chi tiết yêu cầu AI sinh Page Object Model, Data-driven JSON và Playwright test specs cho 3 tính năng theo đúng ngữ cảnh đề bài. | **ĐẠT (100%)** |
 | **G9.3 (Phân tích - Analyse)** | Phân tích, mổ xẻ và chỉ ra được các sai sót, ảo giác (hallucination) và khiếm khuyết trong output của AI. | Phát hiện chính xác lỗi Fragile Selectors (`<aside>`, `<main>`), lỗi Localization tiếng Anh/Việt, lỗi va chạm chuỗi con khi xóa danh mục và các lỗi race conditions của AI. | **ĐẠT (100%)** |
 | **G9.4 (Cộng tác - Collaborate)** | Phối hợp có trách nhiệm với AI, duy trì vai trò làm chủ chất lượng (Human-in-the-loop), kiên định bảo vệ Test Oracle. | Không để AI tự ý chỉnh sửa assertion làm mất giá trị bắt bug; tự động ghi chép nhật ký 30 Artifacts vào `AI-Audit-Report.md` có dẫn chiếu ISTQB; trực tiếp sửa code POM để test chạy thông suốt. | **ĐẠT (100%)** |
+
+---
+
+# PHẦN 6: CÁC LIÊN KẾT BÀN GIAO QUAN TRỌNG (DELIVERABLE LINKS)
+
+Tuân thủ quy định bàn giao tại Mục 14 của đề bài `Topic/2026.HW04.Automation Testing_Vn.md`, các liên kết minh chứng kiểm thử được công khai và lưu trữ chính thức như sau:
+
+* **Danh sách GitHub Issues (Báo cáo lỗi thực tế trên hệ thống SUT):**
+  * **Đường dẫn chính thức:** [https://github.com/tthphat/eshop-sut/issues](https://github.com/tthphat/eshop-sut/issues)
+  * Bao gồm 2 Issue chính thức được gắn nhãn và phân loại chi tiết:
+    * **GitHub Issue #1:** `[BUG-FR14-01] Missing RBAC Authorization on POST /api/categories Endpoint` (Mức độ: Major — Lỗ hổng kiểm soát phân quyền cho phép User thường can thiệp danh mục của Admin).
+    * **GitHub Issue #2:** `[BUG-FR14-02] POST /api/categories Accepts Whitespace-Only Category Name` (Mức độ: Minor — Lỗi Validation chấp nhận chuỗi toàn khoảng trắng lưu vào CSDL).
+
+* **Video Demo Thuyết trình & Bảo vệ Kiểm thử Tự động (Task 2 — Chế độ Không công khai / Unlisted):**
+  * **Đường dẫn xem trực tiếp:** [https://youtu.be/iOmGFCaGgfE](https://youtu.be/iOmGFCaGgfE)
+  * **Thời lượng:** ≥ 5 phút (khoảng 6–7 phút).
+  * **Nội dung trình diễn trong video:**
+    1. **Xác thực sinh viên chính chủ** trực tiếp trên Terminal bằng 2 lệnh `whoami` và `hostname` theo quy định Anti-AI-Cheat (Mục 11).
+    2. **Tổng quan kiến trúc testware** áp dụng mô hình Page Object Model (`pages/`) và 100% Data-Driven Testing (`data/*.json`).
+    3. **Live Demo thực thi kiểm thử tự động** trên 3 engine trình duyệt (Chromium, Firefox, WebKit) và mở xem báo cáo HTML kiểm tra thanh biểu ngữ Custom Student Audit Reporter có định danh `"Run by: 23120327"` và dấu thời gian ISO 8601.
+    4. **Thuyết minh rà soát phản biện con người (Human Review & AI Gap Analysis):** Trình bày chi tiết các lỗi mã nguồn do AI sinh ra (Fragile Selectors, Localization mismatch, Partial text collision) và cách sinh viên đã trực tiếp tinh chỉnh.
+    5. **Giới thiệu 2 Bug thực tế của SUT** trên GitHub Issues và bộ Agent Skill tái sử dụng tại `skills/automation-test/`.
 
 ---
 
