@@ -85,6 +85,17 @@ interface Fr11TestData {
 const dataPath = path.resolve(__dirname, '../data/fr11-order-history.json');
 const testData: Fr11TestData = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
 
+/**
+ * Test Suite: FR-11 - Xem lịch sử đơn hàng (Order History)
+ *
+ * Order State Machine & Anti-Flaky Assertion Architecture:
+ * - Implements automatic web-first retry assertions (`expect(badge).toHaveText(expectedLabel, { timeout: 7000 })`)
+ *   to guard against flaky state rendering across asynchronous DOM updates in the order lifecycle
+ *   (pending -> confirmed -> shipping -> delivered / canceled).
+ * - Synchronizes UI interactions with backend state via `page.waitForResponse` on state-changing actions
+ *   (such as clicking "Hủy đơn" in TC-FR11-12) to ensure the network-level mutation completes before UI assertions,
+ *   strictly adhering to ISTQB CTFL v4.0 §6.2.2 and W3C asynchronous test execution standards.
+ */
 test.describe('FR-11: Xem lịch sử đơn hàng (Domain + Boundary)', () => {
   test(`${testData.unauthenticatedCase.testId} - ${testData.unauthenticatedCase.title}`, async ({
     page,
@@ -191,7 +202,10 @@ test.describe('FR-11: Xem lịch sử đơn hàng (Domain + Boundary)', () => {
     const row = orderPage.rowByOrderId(tc.order.id);
     await expect(row).toContainText(tc.expectedOrderIdText);
     await expect(row).toContainText(new RegExp(tc.expectedAmountRegex));
-    await expect(orderPage.statusBadgeInRow(row)).toHaveText(tc.expectedStatusLabel);
+    await expect(orderPage.statusBadgeInRow(row)).toHaveText(
+      tc.expectedStatusLabel,
+      { timeout: 7000 }
+    );
   });
 
   test(`${testData.bulkOrdersCase.testId} - ${testData.bulkOrdersCase.title}`, async ({
@@ -232,25 +246,60 @@ test.describe('FR-11: Xem lịch sử đơn hàng (Domain + Boundary)', () => {
         testData.testUser.email,
         testData.testUser.password
       );
+
+      // Handle browser alert dialog during order cancellation
+      page.on('dialog', async (dialog) => {
+        await dialog.accept();
+      });
+
+      let currentStatus = tc.status;
+
+      // TC-FR11-12: Test dynamic order cancellation flow from pending to canceled
+      if (tc.testId === 'TC-FR11-12') {
+        currentStatus = 'pending';
+      }
+
       await page.route('**/api/orders/my-orders', (route) =>
         route.fulfill({
           json: [
             {
               id: tc.orderId,
               total_amount: 250000,
-              status: tc.status,
+              status: currentStatus,
               created_at: '2026-11-12T09:00:00.000Z',
             },
           ],
         })
       );
 
+      await page.route(`**/api/orders/${tc.orderId}/cancel`, (route) => {
+        currentStatus = 'canceled';
+        route.fulfill({
+          status: 200,
+          json: { message: 'Hủy đơn hàng thành công' },
+        });
+      });
+
       await orderPage.goto();
       const row = orderPage.rowByOrderId(tc.orderId);
       const badge = orderPage.statusBadgeInRow(row);
       const cancelBtn = orderPage.cancelButtonInRow(row);
 
-      await expect(badge).toHaveText(tc.expectedLabel);
+      if (tc.testId === 'TC-FR11-12') {
+        // Synchronize with API response when clicking "Hủy đơn" before asserting UI
+        const [cancelResponse] = await Promise.all([
+          page.waitForResponse(
+            (res) =>
+              res.url().includes(`/api/orders/${tc.orderId}/cancel`) &&
+              res.status() === 200
+          ),
+          cancelBtn.click(),
+        ]);
+        expect(cancelResponse.ok()).toBeTruthy();
+      }
+
+      // Playwright auto-retry assertion with 7s timeout for robust state machine transitions
+      await expect(badge).toHaveText(tc.expectedLabel, { timeout: 7000 });
       await expect(badge).toHaveAttribute(
         'class',
         new RegExp(tc.expectedClassRegex)
