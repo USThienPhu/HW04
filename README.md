@@ -204,6 +204,7 @@ npm run report:fr14:webkit
 
 ## 6. Các Liên kết Quan trọng (Deliverable Links)
 
+- **GitHub Repository (Mã nguồn dự án kiểm thử tự động HW04):** [https://github.com/USThienPhu/HW04](https://github.com/USThienPhu/HW04)
 - **GitHub Issues (Danh sách lỗi phát hiện trên SUT):** https://github.com/tthphat/eshop-sut/issues
 - **Video Demo YouTube (Chế độ Không công khai — Unlisted):**
   - **Đường dẫn liên kết:** [https://youtu.be/iOmGFCaGgfE](https://youtu.be/iOmGFCaGgfE)

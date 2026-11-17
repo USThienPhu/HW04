@@ -437,6 +437,10 @@ Qua quá trình thực hiện bài tập HW04-AI, sinh viên đã xây dựng th
 
 Tuân thủ quy định bàn giao tại Mục 14 của đề bài `Topic/2026.HW04.Automation Testing_Vn.md`, các liên kết minh chứng kiểm thử được công khai và lưu trữ chính thức như sau:
 
+* **GitHub Repository (Mã nguồn dự án kiểm thử tự động HW04):**
+  * **Đường dẫn chính thức:** [https://github.com/USThienPhu/HW04](https://github.com/USThienPhu/HW04)
+  * Chứa toàn bộ tài sản kiểm thử (testware): kịch bản Playwright (`tests/`), Page Object Model (`pages/`), bộ dữ liệu kiểm thử JSON (`data/`), các báo cáo HTML đa trình duyệt độc lập (`playwright-report/`), Agent Skills và nhật ký AI Audit Report.
+
 * **Danh sách GitHub Issues (Báo cáo lỗi thực tế trên hệ thống SUT):**
   * **Đường dẫn chính thức:** [https://github.com/tthphat/eshop-sut/issues](https://github.com/tthphat/eshop-sut/issues)
   * Bao gồm 2 Issue chính thức được gắn nhãn và phân loại chi tiết:
