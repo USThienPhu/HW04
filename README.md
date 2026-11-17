@@ -206,7 +206,7 @@ npm run report:fr14:webkit
 
 - **GitHub Issues (Danh sách lỗi phát hiện trên SUT):** https://github.com/tthphat/eshop-sut/issues
 - **Video Demo YouTube (Chế độ Không công khai — Unlisted):**
-  - **Đường dẫn liên kết:** `https://youtu.be/<YOUR_VIDEO_ID_HERE>` *(Sinh viên chèn đường dẫn sau khi tải video lên YouTube)*
+  - **Đường dẫn liên kết:** [https://youtu.be/iOmGFCaGgfE](https://youtu.be/iOmGFCaGgfE)
   - **Thời lượng:** ≥ 5 phút
   - **Nội dung video:** Thuyết minh tiếng Việt, xác thực sinh viên bằng lệnh `whoami` & `hostname`, demo chạy bộ test tự động Playwright đa trình duyệt, kiểm tra báo cáo HTML có dấu thời gian ISO và phân tích các lỗi script do AI sinh ra đã được rà soát, chỉnh sửa.
 
