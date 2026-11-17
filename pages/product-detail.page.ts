@@ -31,6 +31,7 @@ export class ProductDetailPage {
 
   async gotoFromHomeByName(productName: string): Promise<void> {
     await this.page.goto('/');
+    await this.page.waitForLoadState('domcontentloaded');
     await this.page.getByText(productName, { exact: false }).first().click();
   }
 

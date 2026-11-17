@@ -69,7 +69,13 @@ test.describe('FR-06: Xem chi tiết sản phẩm (Domain + Boundary)', () => {
       const detailPage = new ProductDetailPage(page);
 
       if (tc.navigateFromHome) {
-        await detailPage.gotoFromHomeByName(tc.expectedName);
+        // Refinement: Hardened navigation wait to eliminate flaky element attachment on slower browser engines (WebKit/Firefox) per ISTQB Test Execution guidelines.
+        await page.goto('/');
+        await page.waitForLoadState('domcontentloaded');
+        const productCard = page.getByText(tc.expectedName, { exact: false }).first();
+        await expect(productCard).toBeVisible();
+        await productCard.click();
+        await page.waitForURL(new RegExp(`/product/${tc.productId}$`));
       } else {
         await detailPage.goto(tc.productId);
       }
