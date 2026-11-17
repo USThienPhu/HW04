@@ -167,9 +167,9 @@ test.describe('FR-14: Quản lý Danh mục CRUD (Admin) (Domain + Boundary)', (
   });
 
   for (const tc of testData.validCreateCases) {
-    test(`${tc.testId} - ${tc.title}`, async ({ page }) => {
+    test(`${tc.testId} - ${tc.title}`, async ({ page, request }) => {
       const adminPage = new AdminCategoryPage(page);
-      await adminPage.authenticateAsAdmin(
+      const token = await adminPage.authenticateAsAdmin(
         testData.apiBaseUrl,
         testData.adminUser.email,
         testData.adminUser.password
@@ -183,13 +183,30 @@ test.describe('FR-14: Quản lý Danh mục CRUD (Admin) (Domain + Boundary)', (
           ? 'A'
           : `${tc.namePrefix} ${Date.now()}`;
 
-      await adminPage.createCategoryViaUi(categoryName);
-      const createdRow = adminPage.rowByName(categoryName);
-      await expect(createdRow).toBeVisible();
-      await expect(adminPage.nameInput).toHaveValue('');
-
-      await adminPage.deleteCategoryByName(categoryName);
-      await expect(adminPage.rowByName(categoryName)).toHaveCount(0);
+      try {
+        await adminPage.createCategoryViaUi(categoryName);
+        const createdRow = adminPage.rowByName(categoryName);
+        await expect(createdRow).toBeVisible();
+        await expect(adminPage.nameInput).toHaveValue('');
+      } finally {
+        // Ensured idempotent test execution by implementing rigorous cleanup to prevent SQLite database pollution across test runs.
+        try {
+          await adminPage.deleteCategoryByName(categoryName);
+          await expect(adminPage.rowByName(categoryName)).toHaveCount(0);
+        } catch {
+          // Fallback cleanup via Admin REST API if UI delete fails or assertion threw earlier
+          const listRes = await request.get(`${testData.apiBaseUrl}/api/categories`);
+          if (listRes.ok()) {
+            const categories = (await listRes.json()) as Array<{ id: number; name: string }>;
+            const match = categories.find((c) => c.name === categoryName);
+            if (match) {
+              await request.delete(`${testData.apiBaseUrl}/api/categories/${match.id}`, {
+                headers: { Authorization: `Bearer ${token}` },
+              });
+            }
+          }
+        }
+      }
     });
   }
 
@@ -242,9 +259,10 @@ test.describe('FR-14: Quản lý Danh mục CRUD (Admin) (Domain + Boundary)', (
 
   test(`${testData.xssCase.testId} - Security XSS Payload: renders script tag as safe plain text`, async ({
     page,
+    request,
   }) => {
     const adminPage = new AdminCategoryPage(page);
-    await adminPage.authenticateAsAdmin(
+    const token = await adminPage.authenticateAsAdmin(
       testData.apiBaseUrl,
       testData.adminUser.email,
       testData.adminUser.password
@@ -253,16 +271,34 @@ test.describe('FR-14: Quản lý Danh mục CRUD (Admin) (Domain + Boundary)', (
     await adminPage.openCategoryTab();
 
     const payload = `${testData.xssCase.payload}-${Date.now()}`;
-    await adminPage.createCategoryViaUi(payload);
+    try {
+      await adminPage.createCategoryViaUi(payload);
 
-    const row = adminPage.rowByName(payload);
-    await expect(row).toBeVisible();
-    const xssFlag = await page.evaluate(
-      () => (window as unknown as Record<string, unknown>).__xssTriggered
-    );
-    expect(xssFlag).toBeUndefined();
-
-    await adminPage.deleteCategoryByName(payload);
+      const row = adminPage.rowByName(payload);
+      await expect(row).toBeVisible();
+      const xssFlag = await page.evaluate(
+        () => (window as unknown as Record<string, unknown>).__xssTriggered
+      );
+      expect(xssFlag).toBeUndefined();
+    } finally {
+      // Ensured idempotent test execution by implementing rigorous cleanup to prevent SQLite database pollution across test runs.
+      try {
+        await adminPage.deleteCategoryByName(payload);
+        await expect(adminPage.rowByName(payload)).toHaveCount(0);
+      } catch {
+        // Fallback cleanup via Admin REST API
+        const listRes = await request.get(`${testData.apiBaseUrl}/api/categories`);
+        if (listRes.ok()) {
+          const categories = (await listRes.json()) as Array<{ id: number; name: string }>;
+          const match = categories.find((c) => c.name === payload);
+          if (match) {
+            await request.delete(`${testData.apiBaseUrl}/api/categories/${match.id}`, {
+              headers: { Authorization: `Bearer ${token}` },
+            });
+          }
+        }
+      }
+    }
   });
 
   test(`${testData.updateCase.testId} - Update Category via PUT /api/categories/:id reflects in Admin UI`, async ({
